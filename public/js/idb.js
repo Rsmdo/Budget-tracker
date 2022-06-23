@@ -31,10 +31,10 @@ function saveRecord(record) {
   // open a new transaction with the database with read and write permissions 
   const transaction = db.transaction(['new_budget'], 'readwrite');
 
-  const pizzaObjectStore = transaction.objectStore('new_budget');
+  const budgetObjectStore = transaction.objectStore('new_budget');
 
   // add record to your store with add method
-  pizzaObjectStore.add(record);
+  budgetObjectStore.add(record);
 }
 
 function uploadTransaction() {
@@ -42,10 +42,10 @@ function uploadTransaction() {
   const transaction = db.transaction(["new_budget"], "readwrite");
 
   // access your object store
-  const transactionObjectStore = transaction.objectStore("new_budget");
+  const budgetObjectStore = transaction.objectStore("new_budget");
 
   // get all records from store and set to a variable
-  const getAll = transactionObjectStore.getAll();
+  const getAll = budgetObjectStore.getAll();
 
   getAll.onsuccess = function () {
     // if there was data in indexedDb's store, let's send it to the api server
@@ -66,10 +66,10 @@ function uploadTransaction() {
           // open one more transaction
           const transaction = db.transaction(["new_budget"], "readwrite");
           // access the new_transaction object store
-          const transactionObjectStore =
+          const budgetObjectStore =
             transaction.objectStore("new_budget");
           // clear all items in your store
-          transactionObjectStore.clear();
+          budgetObjectStore.clear();
 
           alert("All saved transactions has been submitted!");
         })
